@@ -1,6 +1,5 @@
 package com.example.WordsGameApi.servises;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,7 +9,6 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Service
-@Scope("prototype")
 public class WordsGridService {
 
     private enum Direction{
@@ -29,7 +27,7 @@ public class WordsGridService {
             this.y = y;
         }
     }
-    public char[][] fillGrid(int gridSize, List<String> words){
+    public char[][] generateGrid(int gridSize, List<String> words){
         List<Coordinate> coordinates = new ArrayList<>();
         char[][] content =  new char[gridSize][gridSize];
         for(int i=0 ; i<gridSize ; i++){
@@ -84,16 +82,7 @@ public class WordsGridService {
         randomFillGrid(content);
         return content;
     }
-    public void displayGrid(char[][] content){
-        int gridSize = content[0].length;
-        for(int i=0 ; i<gridSize ; i++){
-            for(int j=0 ; j<gridSize ; j++){
-                System.out.print(content[i][j] + " ");
-            }
-            System.out.println("");
-        }
 
-    }
     private void randomFillGrid(char[][] content){
         int gridSize = content[0].length;
         String allCapLetter = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
